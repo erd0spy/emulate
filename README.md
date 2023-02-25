@@ -39,6 +39,8 @@ sudo ./emulate.sh path/to/firmware_file
 
 The script will then guide you through the process of setting up and running the QEMU emulation environment.
 
+## Docker Usage
+
 ```bash
 sudo docker run --privileged --device=/dev/kvm --cap-add=NET_ADMIN -P -it emulate
 ```
