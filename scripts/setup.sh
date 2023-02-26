@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+cd ../
+
 # Install dependencies
 BINWALK_DEPS="git python3 python3-dev python3-pip python3-pexpect"
 FIRMADYNE_DEPS="qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils busybox-static fakeroot kpartx snmp uml-utilities util-linux vlan"
