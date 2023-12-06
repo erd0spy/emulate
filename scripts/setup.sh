@@ -3,9 +3,20 @@
 set -euo pipefail
 
 # Install dependencies
-FIRMADYNE_DEPS="qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils busybox-static fakeroot kpartx snmp uml-utilities util-linux vlan python3 python3-dev python3-pip git"
+BINWALK_DEPS="git python3 python3-dev python3-pip python3-pexpect"
+FIRMADYNE_DEPS="qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils busybox-static fakeroot kpartx snmp uml-utilities util-linux vlan"
 sudo apt update
-sudo apt install -y ${FIRMADYNE_DEPS} zip unzip rar unrar lsb-core wget curl tar binwalk
+sudo apt install -y ${BINWALK_DEPS} ${FIRMADYNE_DEPS} zip unzip rar unrar lsb-core wget curl tar
+
+# Install Binwalk
+git clone --depth=1 https://github.com/erd0spy/binwalk/ # fixed version for Ubuntu 20.04+
+cd binwalk
+
+./deps.sh --yes
+sudo python3 ./setup.py install
+sudo -H pip3 install git+https://github.com/ahupp/python-magic
+sudo -H pip3 install git+https://github.com/sviehb/jefferson
+cd ..
 
 # Install Firmadyne
 git clone --recursive https://github.com/firmadyne/firmadyne.git
